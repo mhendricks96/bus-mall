@@ -1,0 +1,41 @@
+body {
+  background-color: cadetblue;
+}
+
+h1 {
+  font-size: 4em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2em;
+  text-align: center;
+}
+
+section {
+  background-color: aquamarine;
+  width: max-content;
+  margin: auto;
+}
+
+section img {
+  width: 300px;
+  margin: 50px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+div { 
+  background-color: gold;
+  padding: 5px;
+  width: max-content;
+  text-align: center;
+  margin: auto;
+  margin-top: 25px;
+}
+
+div:hover {
+  cursor: pointer;
+}
