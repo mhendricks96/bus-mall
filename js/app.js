@@ -26,15 +26,28 @@ function Picture(name, fileExtension = 'jpg'){
   allPicks.push(this);
 }
 
-new Picture('');
-new Picture('');
-new Picture('', 'png');
-new Picture('');
-new Picture('');
-new Picture('');
-new Picture('', 'png');
-new Picture('');
-new Picture('');
+new Picture('bag');
+new Picture('banana');
+new Picture('bathroom');
+new Picture('boots');
+new Picture('breakfast');
+new Picture('bubblegum');
+new Picture('chair');
+new Picture('cthulhu');
+new Picture('dog-duck');
+new Picture('dragon');
+new Picture('pen');
+new Picture('pet-sweep');
+new Picture('scissors');
+new Picture('shark');
+new Picture('sweep', 'png');
+new Picture('tauntaun');
+new Picture('unicorn');
+new Picture('usb', 'gif');
+new Picture('water-can');
+new Picture('wine-glass');
+
+
 
 function getRandomIndex(){
   return Math.floor(Math.random() * allPicks.length);
