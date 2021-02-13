@@ -8,7 +8,7 @@ function getRandomInt(min, max) {
 //Global variables
 let totalCicks = 0;
 let clicksAllowed = 25;//change lower for debugging
-let allPicks = [];
+let allPics = [];
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
@@ -23,7 +23,7 @@ function Picture(name, fileExtension = 'jpg'){
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
   this.clicks = 0;
-  allPicks.push(this);
+  allPics.push(this);
 }
 
 new Picture('bag');
@@ -50,7 +50,7 @@ new Picture('wine-glass');
 
 
 function getRandomIndex(){
-  return Math.floor(Math.random() * allPicks.length);
+  return Math.floor(Math.random() * allPics.length);
 }
 
 function renderPictures(){
@@ -65,28 +65,36 @@ function renderPictures(){
     secondPictureIndex = getRandomIndex();
   }
 
-  imageOne.src = allPicks[firstPictureIndex].src;
-  imageOne.title = allPicks[firstPictureIndex].src;
-  imageOne.alt = allPicks[firstPictureIndex].src
-  allPicks[firstPictureIndex].views++;
+  while (firstPictureIndex === thirdPictureIndex){
+    thirdPictureIndex = getRandomIndex();
+  }
 
-  imageTwo.src = allPicks[secondPictureIndex].src
-  imageTwo.title = allPicks[secondPictureIndex].src
-  imageTwo.alt = allPicks[secondPictureIndex].src
-  allPicks[secondPictureIndex].views++;
+  while (secondPictureIndex === thirdPictureIndex){
+    secondPictureIndex = getRandomIndex();
+  }
 
-  imageThree.src = allPicks[thirdPictureIndex].src
-  imageThree.title = allPicks[thirdPictureIndex].src
-  imageThree.alt = allPicks[thirdPictureIndex].src
-  allPicks[thirdPictureIndex].views++;
+  imageOne.src = allPics[firstPictureIndex].src;
+  imageOne.title = allPics[firstPictureIndex].src;
+  imageOne.alt = allPics[firstPictureIndex].src
+  allPics[firstPictureIndex].views++;
+
+  imageTwo.src = allPics[secondPictureIndex].src
+  imageTwo.title = allPics[secondPictureIndex].src
+  imageTwo.alt = allPics[secondPictureIndex].src
+  allPics[secondPictureIndex].views++;
+
+  imageThree.src = allPics[thirdPictureIndex].src
+  imageThree.title = allPics[thirdPictureIndex].src
+  imageThree.alt = allPics[thirdPictureIndex].src
+  allPics[thirdPictureIndex].views++;
 }
 
 function renderResults() {
   //"picture had 3 votes nd was seen 6 times"
   let myList = document.querySelector('ul');
-  for (let i = 0; i < allPicks.length; i++){
+  for (let i = 0; i < allPics.length; i++){
     let li = document.createElement('li');
-    li.textContent = `${allPicks.name} was viewed ${allPicks[i].views} times and clicked ${allPicks[i].clicks} times`;
+    li.textContent = `${allPics.name} had ${allPics[i].clicks} votes and was seen ${allPics[i].views} times`;
     myList.appendChild(li);
   }
 }
@@ -97,9 +105,9 @@ function handleClick(event){
   }
   totalCicks++;
   let pictureClicked = event.target.title;
-  for (let i = 0; i < allPicks.length; i++)
-    if(pictureClicked === allPicks[i].name){
-      allPicks[i].clicks++
+  for (let i = 0; i < allPics.length; i++)
+    if(pictureClicked === allPics[i].name){
+      allPics[i].clicks++
     }
 
   //console.log(pictureClicked);
