@@ -39,3 +39,12 @@ div {
 div:hover {
   cursor: pointer;
 }
+
+ul {
+  background-color: green;
+  padding: 5px;
+  width: max-content;
+  text-align: center;
+  margin: auto;
+  margin-top: 25px;
+}
