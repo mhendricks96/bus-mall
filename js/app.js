@@ -74,17 +74,17 @@ function renderPictures(){
   }
 
   imageOne.src = allPics[firstPictureIndex].src;
-  imageOne.title = allPics[firstPictureIndex].src;
+  imageOne.title = allPics[firstPictureIndex].name;
   imageOne.alt = allPics[firstPictureIndex].src
   allPics[firstPictureIndex].views++;
 
   imageTwo.src = allPics[secondPictureIndex].src
-  imageTwo.title = allPics[secondPictureIndex].src
+  imageTwo.title = allPics[secondPictureIndex].name
   imageTwo.alt = allPics[secondPictureIndex].src
   allPics[secondPictureIndex].views++;
 
   imageThree.src = allPics[thirdPictureIndex].src
-  imageThree.title = allPics[thirdPictureIndex].src
+  imageThree.title = allPics[thirdPictureIndex].name
   imageThree.alt = allPics[thirdPictureIndex].src
   allPics[thirdPictureIndex].views++;
 }
@@ -94,7 +94,7 @@ function renderResults() {
   let myList = document.querySelector('ul');
   for (let i = 0; i < allPics.length; i++){
     let li = document.createElement('li');
-    li.textContent = `${allPics.name} had ${allPics[i].clicks} votes and was seen ${allPics[i].views} times`;
+    li.textContent = `${allPics[i].name} had ${allPics[i].clicks} votes and was seen ${allPics[i].views} times`;
     myList.appendChild(li);
   }
 }
@@ -110,7 +110,7 @@ function handleClick(event){
       allPics[i].clicks++
     }
 
-  //console.log(pictureClicked);
+  //console.log(pictureClicked.name);
 
   renderPictures();
   if (totalCicks === clicksAllowed){
