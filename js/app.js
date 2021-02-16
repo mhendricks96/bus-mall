@@ -78,13 +78,13 @@ function renderPictures(){
   imageOne.alt = allPics[firstPictureIndex].src
   allPics[firstPictureIndex].views++;
 
-  imageTwo.src = allPics[secondPictureIndex].src
-  imageTwo.title = allPics[secondPictureIndex].name
+  imageTwo.src = allPics[secondPictureIndex].src;
+  imageTwo.title = allPics[secondPictureIndex].name;
   imageTwo.alt = allPics[secondPictureIndex].src
   allPics[secondPictureIndex].views++;
 
-  imageThree.src = allPics[thirdPictureIndex].src
-  imageThree.title = allPics[thirdPictureIndex].name
+  imageThree.src = allPics[thirdPictureIndex].src;
+  imageThree.title = allPics[thirdPictureIndex].name;
   imageThree.alt = allPics[thirdPictureIndex].src
   allPics[thirdPictureIndex].views++;
 }
@@ -116,7 +116,7 @@ function handleClick(event){
   if (totalCicks === clicksAllowed){
     //remove event listener
     myContainer.removeEventListener('click', handleClick);
-    renderResults();
+    //renderResults();
   }
 
 }
