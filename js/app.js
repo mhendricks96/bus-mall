@@ -16,7 +16,7 @@ let myContainer = document.querySelector('section');
 let myButton = document.querySelector('div');
 //console.log(imageOne);
 //console.log(imageTwo);
-//console.log(imageThree);
+//consle.log(imageThree);
 
 function Picture(name, fileExtension = 'jpg'){
   this.name = name;
