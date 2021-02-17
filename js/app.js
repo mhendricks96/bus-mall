@@ -7,13 +7,15 @@ function getRandomInt(min, max) {
 
 //Global variables
 let totalCicks = 0;
-let clicksAllowed = 25;//change lower for debugging
+let clicksAllowed = 5;//change lower for debugging
 let allPics = [];
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
 let myContainer = document.querySelector('section');
 let myButton = document.querySelector('div');
+let pictureIndexArray = [];
+let uniquePictureCount = 6;
 //console.log(imageOne);
 //console.log(imageTwo);
 //consle.log(imageThree);
@@ -54,15 +56,14 @@ function getRandomIndex() {
 }
 
 function renderPictures() {
-  let pictureIndexArray = [];
-  while (pictureIndexArray.length < 3){
+  while (pictureIndexArray.length < uniquePictureCount){
     let randomNumber = getRandomIndex();
     while (!pictureIndexArray.includes(randomNumber)){
-      pictureIndexArray.push(randomNumber);
+      //let randomNumber = getRandomIndex();
+     pictureIndexArray.unshift(randomNumber);
     }
   }
-
-
+  console.log(pictureIndexArray);
   let firstPictureIndex = pictureIndexArray.pop();
   let secondPictureIndex = pictureIndexArray.pop();
   let thirdPictureIndex = pictureIndexArray.pop();
