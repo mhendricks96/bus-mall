@@ -68,7 +68,7 @@ function renderPictures() {
   let thirdPictureIndex = pictureIndexArray.pop();
   //gonna have to use index array for lab
   //maybe name indexArray
-  //check to see if theindex is included in that array
+  //chek to see if theindex is included in that array
   //pop those results from the array or shift perhaps?
   
 
