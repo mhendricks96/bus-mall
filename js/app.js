@@ -16,9 +16,9 @@ let myContainer = document.querySelector('section');
 let myButton = document.querySelector('div');
 //console.log(imageOne);
 //console.log(imageTwo);
-//console.log(imageThree);
+//consle.log(imageThree);
 
-function Picture(name, fileExtension = 'jpg'){
+function Picture(name, fileExtension = 'jpg') {
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
@@ -49,29 +49,28 @@ new Picture('wine-glass');
 
 
 
-function getRandomIndex(){
+function getRandomIndex() {
   return Math.floor(Math.random() * allPics.length);
 }
 
-function renderPictures(){
-  let firstPictureIndex = getRandomIndex();
-  let secondPictureIndex = getRandomIndex();
-  let thirdPictureIndex = getRandomIndex();
+function renderPictures() {
+  let pictureIndexArray = [];
+  while (pictureIndexArray.length < 3){
+    let randomNumber = getRandomIndex();
+    while (!pictureIndexArray.includes(randomNumber)){
+      pictureIndexArray.push(randomNumber);
+    }
+  }
+
+
+  let firstPictureIndex = pictureIndexArray.pop();
+  let secondPictureIndex = pictureIndexArray.pop();
+  let thirdPictureIndex = pictureIndexArray.pop();
   //gonna have to use index array for lab
   //maybe name indexArray
   //check to see if theindex is included in that array
   //pop those results from the array or shift perhaps?
-  while (firstPictureIndex === secondPictureIndex){
-    secondPictureIndex = getRandomIndex();
-  }
-
-  while (firstPictureIndex === thirdPictureIndex){
-    thirdPictureIndex = getRandomIndex();
-  }
-
-  while (secondPictureIndex === thirdPictureIndex){
-    secondPictureIndex = getRandomIndex();
-  }
+  
 
   imageOne.src = allPics[firstPictureIndex].src;
   imageOne.title = allPics[firstPictureIndex].name;
@@ -92,28 +91,28 @@ function renderPictures(){
 function renderResults() {
   //"picture had 3 votes nd was seen 6 times"
   let myList = document.querySelector('ul');
-  for (let i = 0; i < allPics.length; i++){
+  for (let i = 0; i < allPics.length; i++) {
     let li = document.createElement('li');
     li.textContent = `${allPics[i].name} had ${allPics[i].clicks} votes and was seen ${allPics[i].views} times`;
     myList.appendChild(li);
   }
 }
 
-function handleClick(event){
-  if (event.target === myContainer){
-    alert ('please choose a picture')
+function handleClick(event) {
+  if (event.target === myContainer) {
+    alert('please choose a picture')
   }
   totalCicks++;
   let pictureClicked = event.target.title;
   for (let i = 0; i < allPics.length; i++)
-    if(pictureClicked === allPics[i].name){
+    if (pictureClicked === allPics[i].name) {
       allPics[i].clicks++
     }
 
   //console.log(pictureClicked.name);
 
   renderPictures();
-  if (totalCicks === clicksAllowed){
+  if (totalCicks === clicksAllowed) {
     //remove event listener
     myContainer.removeEventListener('click', handleClick);
     //renderResults();
@@ -121,8 +120,8 @@ function handleClick(event){
 
 }
 
-function handleButtonClick(event){
-  if (totalCicks === clicksAllowed){
+function handleButtonClick(event) {
+  if (totalCicks === clicksAllowed) {
     renderResults();
   }
 }
