@@ -13,7 +13,6 @@ let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
 let myContainer = document.querySelector('section');
-let myButton = document.querySelector('div');
 let pictureIndexArray = [];
 let uniquePictureCount = 6;
 //console.log(imageOne);
@@ -56,14 +55,14 @@ function getRandomIndex() {
 }
 
 function renderPictures() {
-  while (pictureIndexArray.length < uniquePictureCount){
+  while (pictureIndexArray.length < uniquePictureCount) {
     let randomNumber = getRandomIndex();
-    while (!pictureIndexArray.includes(randomNumber)){
+    while (!pictureIndexArray.includes(randomNumber)) {
       //let randomNumber = getRandomIndex();
-     pictureIndexArray.unshift(randomNumber);
+      pictureIndexArray.unshift(randomNumber);
     }
   }
-  console.log(pictureIndexArray);
+  //console.log(pictureIndexArray);
   let firstPictureIndex = pictureIndexArray.pop();
   let secondPictureIndex = pictureIndexArray.pop();
   let thirdPictureIndex = pictureIndexArray.pop();
@@ -71,7 +70,7 @@ function renderPictures() {
   //maybe name indexArray
   //chek to see if theindex is included in that array
   //pop those results from the array or shift perhaps?
-  
+
 
   imageOne.src = allPics[firstPictureIndex].src;
   imageOne.title = allPics[firstPictureIndex].name;
@@ -89,15 +88,6 @@ function renderPictures() {
   allPics[thirdPictureIndex].views++;
 }
 
-function renderResults() {
-  //"picture had 3 votes nd was seen 6 times"
-  let myList = document.querySelector('ul');
-  for (let i = 0; i < allPics.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${allPics[i].name} had ${allPics[i].clicks} votes and was seen ${allPics[i].views} times`;
-    myList.appendChild(li);
-  }
-}
 
 function handleClick(event) {
   if (event.target === myContainer) {
@@ -121,13 +111,44 @@ function handleClick(event) {
 
 }
 
-function handleButtonClick(event) {
-  if (totalCicks === clicksAllowed) {
-    renderResults();
-  }
+renderPictures();
+let pictureNames = [];
+let pictureViews = [];
+let pictureClicks = [];
+for (let i = 0; i <allPics.length; i++){
+  pictureNames.push(allPics[i].name);
+  pictureViews.push(allPics[i].views);
+  pictureClicks.push(allPics[i].clicks);
 }
 
-renderPictures();
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
+    datasets: [{
+      label: '# of Views',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor:'purple',
+      borderColor: 'purple',
+      borderWidth: 1
+    },{
+      label: '# of Clicks',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: 'orange',
+      borderColor: 'orange',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
 
 myContainer.addEventListener('click', handleClick);
-myButton.addEventListener('click', handleButtonClick);

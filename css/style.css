@@ -48,3 +48,9 @@ ul {
   margin: auto;
   margin-top: 25px;
 }
+
+#graph-section {
+  height: 450px;
+  width: 900px;
+  margin: auto;
+}
