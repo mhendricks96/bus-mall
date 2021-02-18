@@ -7,7 +7,7 @@ function getRandomInt(min, max) {
 
 //Global variables
 let totalCicks = 0;
-let clicksAllowed = 5;//change lower for debugging
+let clicksAllowed = 25;//change lower for debugging
 let allPics = [];
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
@@ -106,49 +106,58 @@ function handleClick(event) {
   if (totalCicks === clicksAllowed) {
     //remove event listener
     myContainer.removeEventListener('click', handleClick);
-    //renderResults();
+    renderChart();
   }
-
+  //renderChart();
 }
 
 renderPictures();
-let pictureNames = [];
-let pictureViews = [];
-let pictureClicks = [];
-for (let i = 0; i <allPics.length; i++){
-  pictureNames.push(allPics[i].name);
-  pictureViews.push(allPics[i].views);
-  pictureClicks.push(allPics[i].clicks);
+
+
+function renderChart() {
+
+
+
+  let pictureNames = [];
+  let pictureViews = [];
+  let pictureClicks = [];
+  for (let i = 0; i < allPics.length; i++) {
+    pictureNames.push(allPics[i].name);
+    pictureViews.push(allPics[i].views);
+    pictureClicks.push(allPics[i].clicks);
+  }
+
+  console.log(pictureNames)
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: pictureNames,
+      datasets: [{
+        label: 'Views',
+        data: pictureViews,
+        backgroundColor: 'purple',
+        borderColor: 'purple',
+        borderWidth: 1
+      }, {
+        label: 'Clicks',
+        data: pictureClicks,
+        backgroundColor: 'orange',
+        borderColor: 'orange',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'],
-    datasets: [{
-      label: '# of Views',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor:'purple',
-      borderColor: 'purple',
-      borderWidth: 1
-    },{
-      label: '# of Clicks',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: 'orange',
-      borderColor: 'orange',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
 
 myContainer.addEventListener('click', handleClick);
