@@ -26,6 +26,15 @@ function Picture(name, fileExtension = 'jpg') {
   this.clicks = 0;
   allPics.push(this);
 }
+// 1 get data from local storage
+let retrievedPics = localStorage.getItem("inventions");
+
+//3. use local storage in a way that doesnt mess things up
+if (retrievedPics){
+  //2. make that data usable again by parsing it from JSON
+  let parsedPics = JSON.parse(retrievedPics);
+  allPics = parsedPics;
+} else {
 
 new Picture('bag');
 new Picture('banana');
@@ -47,7 +56,7 @@ new Picture('unicorn');
 new Picture('usb', 'gif');
 new Picture('water-can');
 new Picture('wine-glass');
-
+}
 
 
 function getRandomIndex() {
@@ -107,9 +116,14 @@ function handleClick(event) {
     //remove event listener
     myContainer.removeEventListener('click', handleClick);
     renderChart();
+    // 1. need to stringify the data
+    let stringifiedPics = JSON.stringify(allPics);
+    //2. save to local storage
+    localStorage.setItem("inventions", stringifiedPics);
   }
   //renderChart();
 }
+
 
 renderPictures();
 
