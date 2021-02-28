@@ -1,5 +1,5 @@
 'use strict'
-// random math
+// random Math.com
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * max); //The maximum is exclusive and the minimum is inclusive
@@ -7,7 +7,7 @@ function getRandomInt(min, max) {
 
 //Global variables
 let totalCicks = 0;
-let clicksAllowed = 25;//change lower for debugging
+let clicksAllowed = 25;
 let allPics = [];
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
@@ -15,9 +15,7 @@ let imageThree = document.querySelector('section img:nth-child(3)');
 let myContainer = document.querySelector('section');
 let pictureIndexArray = [];
 let uniquePictureCount = 6;
-//console.log(imageOne);
-//console.log(imageTwo);
-//consle.log(imageThree);
+
 
 function Picture(name, fileExtension = 'jpg') {
   this.name = name;
@@ -67,16 +65,14 @@ function renderPictures() {
   while (pictureIndexArray.length < uniquePictureCount) {
     let randomNumber = getRandomIndex();
     while (!pictureIndexArray.includes(randomNumber)) {
-      //let randomNumber = getRandomIndex();
       pictureIndexArray.unshift(randomNumber);
     }
   }
-  //console.log(pictureIndexArray);
+  
   let firstPictureIndex = pictureIndexArray.pop();
   let secondPictureIndex = pictureIndexArray.pop();
   let thirdPictureIndex = pictureIndexArray.pop();
-  //gonna have to use index array for lab
-  //maybe name indexArray
+  
   //chek to see if theindex is included in that array
   //pop those results from the array or shift perhaps?
 
@@ -109,7 +105,6 @@ function handleClick(event) {
       allPics[i].clicks++
     }
 
-  //console.log(pictureClicked.name);
 
   renderPictures();
   if (totalCicks === clicksAllowed) {
@@ -121,7 +116,7 @@ function handleClick(event) {
     //2. save to local storage
     localStorage.setItem("inventions", stringifiedPics);
   }
-  //renderChart();
+  
 }
 
 
